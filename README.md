@@ -72,6 +72,23 @@ Scenes: 1 hook · 2 problem · 3 solution (prompt → render → phone) · 4 dem
 (editing / animation / subtitles / VFX → "1") · 5 offer («НӨЛДЕН») · 6 CTA
 (comment box typing «AI»).
 
+## AI VIDEO CREATOR — курс (docs/)
+
+Қазақ тіліндегі мобильді курс: «AI VIDEO CREATOR — Нөлден алғашқы AI-видеоға дейін». It teaches someone with only a
+smartphone to make a vertical video with ChatGPT, GitHub and Claude Code (the same method that produced the video above).
+
+- **Platform:** `docs/`, a static mobile-first site in plain HTML/CSS/JS with no build step and no backend. Progress is
+  saved in the browser's `localStorage`.
+- **Content:** written in Markdown. `docs/content/course.json` lists the 6 modules and 37 lessons; the lessons are in
+  `docs/content/lessons/*.md`. The prompt library is `docs/content/prompts.json` (35 prompts); the final project is
+  `docs/content/final-project.md`; the screen-recording scripts are in `docs/content/video-scripts/`.
+- **Lesson extensions:** a ```` ```prompt ```` block becomes a card with a Copy button, a ```` ```quiz ```` block becomes an
+  interactive quiz, and `- [ ]` checklists are saved per device.
+- **Publish:** GitHub → Settings → Pages → *Deploy from a branch* → choose the branch and the `/docs` folder → Save.
+  The site appears at `https://<user>.github.io/<repo>/`. On a free plan this requires a public repository.
+- **Local preview and QA:** `python3 -m http.server 8765 --directory docs`, then `node scripts/check_course.js --shots`.
+  This opens every page at phone size and checks lesson structure, quizzes, copy, progress and layout overflow.
+
 ## Licences
 
 Fonts are under the SIL Open Font License (Fira Sans Extra Condensed, PT Serif,
