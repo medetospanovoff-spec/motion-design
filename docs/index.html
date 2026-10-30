@@ -35,7 +35,7 @@
     p { margin: 0 0 14px; }
     .muted { color: var(--muted); }
     .eyebrow { font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
-    section { padding-top: 36px; }
+    section { padding-top: 36px; scroll-margin-top: 60px; }
     .hero { padding-top: 22px; display: grid; gap: 18px; }
     .video { border-radius: 22px; overflow: hidden; border: 1px solid var(--line-2); aspect-ratio: 9/16; max-height: 70vh; margin: 0 auto; background: #000; }
     .video video { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -100,8 +100,8 @@
         <div class="old" data-old></div>
         <div class="new" data-new></div>
         <p class="muted" style="font-size:15px">Бір рет төлейсіз — курсқа шексіз қолжетімділік</p>
-        <a class="btn" data-dm>Курсқа жазылу →</a>
-        <p class="muted" style="font-size:13px;margin:10px 0 0">Батырма Instagram директін ашады</p>
+        <a class="btn" href="#buy">Курсқа жазылу →</a>
+        <p class="muted" style="font-size:13px;margin:10px 0 0">Сұрақтарыңыз болса — <a data-dm>Instagram директіне</a> жазыңыз</p>
       </div>
     </section>
 
@@ -139,17 +139,16 @@
       </ul></div>
     </section>
 
-    <section>
+    <section id="buy">
       <h2>Қалай сатып алуға болады</h2>
       <div class="card">
         <ol class="steps">
-          <li><span><b>Instagram директіне жазыңыз</b> — төмендегі батырманы басыңыз</span></li>
-          <li><span><b><span data-new-inline></span> Kaspi арқылы аударыңыз</b> — реквизиттерді директте жіберемін</span></li>
-          <li><span><b>Чектің скриншотын директке жіберіңіз</b></span></li>
+          <li><span><b><span data-new-inline></span> Kaspi картаға аударыңыз</b> — карта нөмірі төменде</span></li>
+          <li><span><b>Чектің скриншотын Instagram директіне жіберіңіз</b> — батырма төменде</span></li>
           <li><span><b>Курсқа жеке сілтеме аласыз</b> — бірден оқуды бастайсыз</span></li>
         </ol>
         <div class="kaspi" data-kaspi></div>
-        <a class="btn" data-dm style="margin-top:18px">Instagram-ға жазу →</a>
+        <a class="btn" data-dm style="margin-top:18px">Чекті директке жіберу →</a>
       </div>
     </section>
 
@@ -177,7 +176,7 @@
         <div class="tag">Ашылу бағасы</div>
         <div class="old" data-old></div>
         <div class="new" data-new></div>
-        <a class="btn" data-dm style="margin-top:8px">Курсқа жазылу →</a>
+        <a class="btn" href="#buy" style="margin-top:8px">Курсқа жазылу →</a>
       </div>
     </section>
 
@@ -186,16 +185,16 @@
 
   <div class="sticky"><div class="wrap">
     <div class="p"><s data-old></s><span data-new></span></div>
-    <a class="btn" data-dm>Курсқа жазылу</a>
+    <a class="btn" href="#buy">Курсқа жазылу</a>
   </div></div>
 
   <script>
     // ---- Баптаулар: осы жерді өзгертіңіз ----
     const CONFIG = {
-      instagram: 'INSTAGRAM_USERNAME', // @-сыз, мысалы: 'aivideo.kz'
+      instagram: 'aicode.kz',          // @-сыз
       price: 20000,                    // ағымдағы баға, ₸
       oldPrice: 39000,                 // сызылған баға, ₸
-      kaspiPhone: '',                  // бос қалса, реквизиттер тек директте жіберіледі
+      kaspiCard: '4400 4303 9277 3393', // бос қалса, реквизиттер тек директте жіберіледі
       kaspiName: '',                   // мысалы: 'Медет О.'
     };
     // ------------------------------------------
@@ -205,10 +204,23 @@
     document.querySelectorAll('[data-old]').forEach(e => (e.textContent = fmt(CONFIG.oldPrice)));
     const dm = 'https://ig.me/m/' + encodeURIComponent(CONFIG.instagram);
     document.querySelectorAll('[data-dm]').forEach(a => { a.href = dm; a.target = '_blank'; a.rel = 'noopener'; });
-    if (CONFIG.kaspiPhone) {
+    if (CONFIG.kaspiCard) {
       const k = document.querySelector('[data-kaspi]');
       k.classList.add('on');
-      k.innerHTML = `<div class="note" style="background:var(--green-soft);border-left-color:var(--green)"><b>Kaspi:</b> ${CONFIG.kaspiPhone}${CONFIG.kaspiName ? ' · ' + CONFIG.kaspiName : ''}<br>Сомасы: <b>${fmt(CONFIG.price)}</b></div>`;
+      k.innerHTML = `<div class="card" style="background:var(--surface-2);text-align:center">
+        <div class="muted" style="font-size:13px;font-weight:800;letter-spacing:.12em">KASPI КАРТА</div>
+        <div style="font-size:21px;font-weight:900;letter-spacing:.03em;margin:6px 0;white-space:nowrap">${CONFIG.kaspiCard}</div>
+        ${CONFIG.kaspiName ? `<div class="muted" style="font-size:15px">${CONFIG.kaspiName}</div>` : ''}
+        <div style="margin:6px 0 12px">Сомасы: <b>${fmt(CONFIG.price)}</b></div>
+        <button class="btn ghost" data-copy-card style="min-height:48px;font-size:16px">Карта нөмірін көшіру</button></div>`;
+      k.querySelector('[data-copy-card]').addEventListener('click', async e => {
+        const num = CONFIG.kaspiCard.replace(/\s/g, '');
+        try { await navigator.clipboard.writeText(num); } catch (err) {
+          const t = document.createElement('textarea'); t.value = num; document.body.appendChild(t); t.select(); document.execCommand('copy'); t.remove();
+        }
+        e.target.textContent = 'Көшірілді ✓';
+        setTimeout(() => (e.target.textContent = 'Карта нөмірін көшіру'), 1600);
+      });
     }
   </script>
 </body>
