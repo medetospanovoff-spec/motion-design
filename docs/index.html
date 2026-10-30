@@ -4,39 +4,212 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0B0D12">
-  <meta name="description" content="AI VIDEO CREATOR — смартфон, ChatGPT, GitHub және Claude Code арқылы нөлден алғашқы AI-видеоға дейін. Қазақ тіліндегі практикалық курс.">
-  <title>AI VIDEO CREATOR — Нөлден алғашқы AI-видеоға дейін</title>
-  <link rel="manifest" href="manifest.webmanifest">
+  <title>AI VIDEO CREATOR — авторлық курс</title>
+  <meta name="description" content="Тек смартфонмен, монтажсыз, нөлден бастап AI арқылы кәсіби Reels жасауды үйрететін авторлық курс. Қазақ тілінде.">
+  <meta property="og:title" content="AI VIDEO CREATOR — авторлық курс">
+  <meta property="og:description" content="Тек смартфонмен AI арқылы кәсіби Reels жасауды үйреніңіз. 6 модуль, 37 сабақ, 35 дайын промпт.">
+  <meta property="og:image" content="media/example-poster.jpg">
   <link rel="icon" href="assets/icon-192.png">
   <link rel="apple-touch-icon" href="assets/icon-192.png">
-  <link rel="stylesheet" href="assets/style.css?v=2">
+  <style>
+    :root {
+      --bg: #0B0D12; --surface: #12151C; --surface-2: #191D27; --line: rgba(255,255,255,.08); --line-2: rgba(255,255,255,.14);
+      --text: #F2F4F8; --muted: #9AA3B2; --faint: #6B7385; --accent: #FF5A1F; --accent-soft: rgba(255,90,31,.14);
+      --green: #33D17A; --green-soft: rgba(51,209,122,.14); --yellow: #FFC43D; --yellow-soft: rgba(255,196,61,.12);
+      --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color-scheme: dark;
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased;
+      padding-bottom: calc(92px + env(safe-area-inset-bottom)); }
+    a { color: inherit; }
+    .wrap { max-width: 680px; margin: 0 auto; padding: 0 16px; }
+    header { position: sticky; top: 0; z-index: 10; background: rgba(11,13,18,.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--line); }
+    header .wrap { display: flex; align-items: center; gap: 10px; padding-top: calc(10px + env(safe-area-inset-top)); padding-bottom: 10px; font-weight: 800; letter-spacing: .04em; font-size: 15px; }
+    .mark { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 10px; background: var(--accent); color: #12151C; font-size: 14px; font-weight: 900; }
+    h1, h2, h3 { line-height: 1.2; letter-spacing: -.01em; margin: 0; }
+    h1 { font-size: 34px; font-weight: 850; }
+    h1 em { font-style: normal; color: var(--accent); }
+    h2 { font-size: 24px; font-weight: 800; margin-bottom: 14px; }
+    p { margin: 0 0 14px; }
+    .muted { color: var(--muted); }
+    .eyebrow { font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+    section { padding-top: 36px; }
+    .hero { padding-top: 22px; display: grid; gap: 18px; }
+    .video { border-radius: 22px; overflow: hidden; border: 1px solid var(--line-2); aspect-ratio: 9/16; max-height: 70vh; margin: 0 auto; background: #000; }
+    .video video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .cap { font-size: 13px; color: var(--muted); text-align: center; margin-top: 8px; }
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 18px; }
+    .stack { display: grid; gap: 12px; }
+    .price { text-align: center; padding: 24px 18px; background: radial-gradient(circle at 50% 0%, rgba(255,90,31,.22), transparent 65%), var(--surface); border: 1px solid var(--line-2); }
+    .price .old { color: var(--faint); text-decoration: line-through; font-size: 22px; font-weight: 700; }
+    .price .new { font-size: 48px; font-weight: 900; line-height: 1.1; margin: 4px 0; }
+    .tag { display: inline-block; padding: 5px 12px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-size: 13px; font-weight: 800; margin-bottom: 10px; }
+    .btn { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 56px; padding: 0 22px; border-radius: 16px; background: var(--accent); color: #12151C;
+      font-weight: 850; font-size: 18px; text-decoration: none; width: 100%; transition: transform .15s; border: 0; }
+    .btn:active { transform: scale(.97); }
+    .btn.ghost { background: var(--surface-2); color: var(--text); border: 1px solid var(--line-2); }
+    ul.check { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+    ul.check li { display: flex; gap: 12px; align-items: flex-start; }
+    ul.check li::before { content: "✓"; flex: none; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--green-soft); color: var(--green); font-weight: 900; font-size: 14px; margin-top: 1px; }
+    .mod { display: flex; gap: 14px; align-items: center; }
+    .num { flex: none; width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; background: var(--surface-2); color: var(--accent); font-weight: 900; }
+    .mod b { display: block; line-height: 1.3; }
+    .mod span { font-size: 14px; color: var(--muted); }
+    .steps { counter-reset: s; display: grid; gap: 12px; padding: 0; margin: 0; }
+    .steps li { list-style: none; display: flex; gap: 14px; align-items: flex-start; }
+    .steps li::before { counter-increment: s; content: counter(s); flex: none; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 11px; background: var(--accent); color: #12151C; font-weight: 900; }
+    .note { background: var(--yellow-soft); border-left: 4px solid var(--yellow); border-radius: 12px; padding: 14px 16px; font-size: 15px; }
+    details { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 0 16px; }
+    summary { cursor: pointer; list-style: none; font-weight: 750; padding: 16px 0; display: flex; justify-content: space-between; gap: 12px; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; color: var(--accent); font-size: 22px; line-height: 1; }
+    details[open] summary::after { content: "−"; }
+    details p { color: #DCE1EA; }
+    .kaspi { display: none; margin-top: 12px; text-align: left; }
+    .kaspi.on { display: block; }
+    .sticky { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); background: rgba(14,16,22,.94);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-top: 1px solid var(--line); }
+    .sticky .wrap { display: flex; align-items: center; gap: 12px; padding: 0; }
+    .sticky .p { white-space: nowrap; font-weight: 900; font-size: 20px; line-height: 1.1; }
+    .sticky .p s { display: block; font-size: 13px; color: var(--faint); font-weight: 700; }
+    footer { padding: 40px 0 20px; text-align: center; font-size: 13px; color: var(--faint); }
+    @media (min-width: 760px) { .hero { grid-template-columns: 1fr 300px; align-items: center; } .video { max-height: 540px; } }
+  </style>
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="#/" aria-label="Басты бет">
-      <span class="brand-mark">AI</span>
-      <span class="brand-text">VIDEO CREATOR</span>
-    </a>
-    <a class="top-progress" href="#/progress" aria-label="Прогресс">
-      <svg viewBox="0 0 36 36" class="ring"><circle cx="18" cy="18" r="15.5" class="ring-bg"/><circle cx="18" cy="18" r="15.5" class="ring-fg" id="ringFg"/></svg>
-      <span id="ringPct">0%</span>
-    </a>
-  </header>
+  <header><div class="wrap"><span class="mark">AI</span>VIDEO CREATOR</div></header>
 
-  <main id="view" class="view" tabindex="-1"></main>
+  <main class="wrap">
+    <div class="hero">
+      <div>
+        <div class="eyebrow">Авторлық курс</div>
+        <h1>Тек <em>смартфонмен</em> AI арқылы кәсіби Reels жасауды үйреніңіз</h1>
+        <p class="muted" style="margin-top:14px">Монтаж, бағдарламалау және дизайн тәжірибесі қажет емес. ChatGPT, GitHub және Claude Code көмегімен нөлден бастап өз вертикал видеоңызды жасайсыз — қадам-қадаммен, қазақ тілінде.</p>
+      </div>
+      <div>
+        <div class="video"><video src="media/example-reel.mp4" poster="media/example-poster.jpg" controls playsinline preload="none"></video></div>
+        <div class="cap">Бұл видео бір промпт арқылы жасалған — курста дәл осыны үйренесіз</div>
+      </div>
+    </div>
 
-  <nav class="tabbar" aria-label="Негізгі мәзір">
-    <a href="#/" data-tab="home"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg><span>Басты</span></a>
-    <a href="#/modules" data-tab="modules"><svg viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h10"/></svg><span>Модульдер</span></a>
-    <a href="#/prompts" data-tab="prompts"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z"/></svg><span>Промпттар</span></a>
-    <a href="#/practice" data-tab="practice"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg><span>Тапсырма</span></a>
-    <a href="#/progress" data-tab="progress"><svg viewBox="0 0 24 24"><path d="M5 20V10M12 20V4M19 20v-7"/></svg><span>Прогресс</span></a>
-  </nav>
+    <section>
+      <div class="card price" id="price">
+        <div class="tag">Ашылу бағасы</div>
+        <div class="old" data-old></div>
+        <div class="new" data-new></div>
+        <p class="muted" style="font-size:15px">Бір рет төлейсіз — курсқа шексіз қолжетімділік</p>
+        <a class="btn" data-dm>Курсқа жазылу →</a>
+        <p class="muted" style="font-size:13px;margin:10px 0 0">Батырма Instagram директін ашады</p>
+      </div>
+    </section>
 
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <section>
+      <h2>Курста не аласыз</h2>
+      <div class="card"><ul class="check">
+        <li><span><b>6 модуль, 37 қысқа сабақ</b> — әрқайсысы 5–10 минут, түсінікті тілмен</span></li>
+        <li><span><b>35 дайын промпт</b> — көшіріп алып, бірден қолданасыз</span></li>
+        <li><span><b>Практикалық тапсырмалар мен тесттер</b> әр сабақта</span></li>
+        <li><span><b>Финалдық жоба</b> — өз AI Reels-іңізді нөлден жасайсыз</span></li>
+        <li><span><b>Прогресс бақылау</b> — қай жерде тоқтағаныңыз сақталады</span></li>
+        <li><span><b>Тек телефон</b> — компьютер мен монтаж бағдарламасы керек емес</span></li>
+      </ul></div>
+    </section>
 
-  <noscript><p class="noscript">Курсты ашу үшін браузерде JavaScript қосулы болуы керек.</p></noscript>
-  <script src="assets/vendor/marked.umd.js"></script>
-  <script src="assets/app.js?v=2"></script>
+    <section>
+      <h2>Курс бағдарламасы</h2>
+      <div class="stack">
+        <div class="card mod"><div class="num">01</div><div><b>AI әлеміне кіріспе</b><span>AI видеоны қалай жасайды, қандай құралдар керек</span></div></div>
+        <div class="card mod"><div class="num">02</div><div><b>ChatGPT және промпт инженериясы</b><span>Сценарий және Claude Code-қа арналған кәсіби промпт</span></div></div>
+        <div class="card mod"><div class="num">03</div><div><b>GitHub: мобильді жұмыс ортасы</b><span>Телефоннан аккаунт, репозиторий, файлдар</span></div></div>
+        <div class="card mod"><div class="num">04</div><div><b>Claude Code арқылы видео жасау</b><span>Промптты жіберу, видеоны алу, қателерді түзету</span></div></div>
+        <div class="card mod"><div class="num">05</div><div><b>Кәсіби монтаж және визуализация</b><span>Анимация, типография, субтитр, эффект, дыбыс, экспорт</span></div></div>
+        <div class="card mod"><div class="num">06</div><div><b>Контентті жариялау</b><span>TikTok, Reels, сипаттама, идеялар жоспары</span></div></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Курс кімге арналған</h2>
+      <div class="card"><ul class="check">
+        <li>Видео монтаждап көрмегендерге</li>
+        <li>Бағдарламалауды білмейтіндерге</li>
+        <li>TikTok, Instagram және YouTube Shorts үшін контент жасағысы келетіндерге</li>
+        <li>AI-ды өз ісінде, бизнесінде немесе блогында қолданғысы келетіндерге</li>
+      </ul></div>
+    </section>
+
+    <section>
+      <h2>Қалай сатып алуға болады</h2>
+      <div class="card">
+        <ol class="steps">
+          <li><span><b>Instagram директіне жазыңыз</b> — төмендегі батырманы басыңыз</span></li>
+          <li><span><b><span data-new-inline></span> Kaspi арқылы аударыңыз</b> — реквизиттерді директте жіберемін</span></li>
+          <li><span><b>Чектің скриншотын директке жіберіңіз</b></span></li>
+          <li><span><b>Курсқа жеке сілтеме аласыз</b> — бірден оқуды бастайсыз</span></li>
+        </ol>
+        <div class="kaspi" data-kaspi></div>
+        <a class="btn" data-dm style="margin-top:18px">Instagram-ға жазу →</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Маңызды ақпарат</h2>
+      <div class="note">
+        <b>Қосымша шығын туралы шынайы ескерту:</b> видеоны жасау үшін <b>Claude</b> қосымшасының ақылы жазылымы (Pro немесе одан жоғары) қажет — ол курс бағасына кірмейді және тікелей Anthropic-ке төленеді. Бағасын claude.com/pricing бетінен тексеріңіз. ChatGPT пен GitHub тегін нұсқалары жеткілікті. Курстың алғашқы 3 модулін жазылымсыз өтесіз.
+      </div>
+    </section>
+
+    <section>
+      <h2>Жиі қойылатын сұрақтар</h2>
+      <div class="stack">
+        <details><summary>Компьютер керек пе?</summary><p>Жоқ. Курс толығымен смартфонға арналған: барлық қадам телефон браузері мен қосымшалары арқылы орындалады.</p></details>
+        <details><summary>Монтаж немесе бағдарламалау тәжірибесі керек пе?</summary><p>Жоқ. Курс нөлден басталады: ChatGPT-ке тіркелуден бастап дайын видеоны жариялауға дейін әр қадам түсіндірілген.</p></details>
+        <details><summary>Курсқа қолжетімділік қанша уақытқа беріледі?</summary><p>Бір рет төлейсіз, курсты кез келген уақытта, өз қарқыныңызбен өтесіз.</p></details>
+        <details><summary>Қанша уақытта өтуге болады?</summary><p>Сабақтар қысқа (5–10 минут). Көпшілігі бірнеше күнде алғашқы видеосын жасайды — бұл сіздің қарқыныңызға байланысты.</p></details>
+        <details><summary>Курс қай тілде?</summary><p>Барлық сабақ, промпт және тапсырма қазақ тілінде.</p></details>
+        <details><summary>Тағы қандай шығын бар?</summary><p>Видеоны жасау кезеңінде Claude ақылы жазылымы (Pro немесе одан жоғары) керек. ChatGPT пен GitHub — тегін.</p></details>
+      </div>
+    </section>
+
+    <section>
+      <div class="card price">
+        <div class="tag">Ашылу бағасы</div>
+        <div class="old" data-old></div>
+        <div class="new" data-new></div>
+        <a class="btn" data-dm style="margin-top:8px">Курсқа жазылу →</a>
+      </div>
+    </section>
+
+    <footer>AI VIDEO CREATOR · авторлық курс</footer>
+  </main>
+
+  <div class="sticky"><div class="wrap">
+    <div class="p"><s data-old></s><span data-new></span></div>
+    <a class="btn" data-dm>Курсқа жазылу</a>
+  </div></div>
+
+  <script>
+    // ---- Баптаулар: осы жерді өзгертіңіз ----
+    const CONFIG = {
+      instagram: 'INSTAGRAM_USERNAME', // @-сыз, мысалы: 'aivideo.kz'
+      price: 20000,                    // ағымдағы баға, ₸
+      oldPrice: 39000,                 // сызылған баға, ₸
+      kaspiPhone: '',                  // бос қалса, реквизиттер тек директте жіберіледі
+      kaspiName: '',                   // мысалы: 'Медет О.'
+    };
+    // ------------------------------------------
+    const fmt = n => n.toLocaleString('ru-RU').replace(/,/g, ' ') + ' ₸';
+    document.querySelectorAll('[data-new]').forEach(e => (e.textContent = fmt(CONFIG.price)));
+    document.querySelectorAll('[data-new-inline]').forEach(e => (e.textContent = fmt(CONFIG.price)));
+    document.querySelectorAll('[data-old]').forEach(e => (e.textContent = fmt(CONFIG.oldPrice)));
+    const dm = 'https://ig.me/m/' + encodeURIComponent(CONFIG.instagram);
+    document.querySelectorAll('[data-dm]').forEach(a => { a.href = dm; a.target = '_blank'; a.rel = 'noopener'; });
+    if (CONFIG.kaspiPhone) {
+      const k = document.querySelector('[data-kaspi]');
+      k.classList.add('on');
+      k.innerHTML = `<div class="note" style="background:var(--green-soft);border-left-color:var(--green)"><b>Kaspi:</b> ${CONFIG.kaspiPhone}${CONFIG.kaspiName ? ' · ' + CONFIG.kaspiName : ''}<br>Сомасы: <b>${fmt(CONFIG.price)}</b></div>`;
+    }
+  </script>
 </body>
 </html>

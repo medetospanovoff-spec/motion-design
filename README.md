@@ -77,11 +77,12 @@ Scenes: 1 hook · 2 problem · 3 solution (prompt → render → phone) · 4 dem
 Қазақ тіліндегі мобильді курс: «AI VIDEO CREATOR — Нөлден алғашқы AI-видеоға дейін». It teaches someone with only a
 smartphone to make a vertical video with ChatGPT, GitHub and Claude Code (the same method that produced the video above).
 
-- **Platform:** `docs/`, a static mobile-first site in plain HTML/CSS/JS with no build step and no backend. Progress is
+- **Sales page:** `docs/index.html` is public at the site root. It shows the price, the programme and how to buy (Kaspi transfer via Instagram DM). Price, Instagram username and Kaspi details are set in the `CONFIG` block at the bottom of the file.
+- **Platform:** `docs/kurs-f4134b/` is the course itself, served at a private path whose link is sent after payment. It is a static mobile-first site in plain HTML/CSS/JS with no build step and no backend. Progress is
   saved in the browser's `localStorage`.
-- **Content:** written in Markdown. `docs/content/course.json` lists the 6 modules and 37 lessons; the lessons are in
-  `docs/content/lessons/*.md`. The prompt library is `docs/content/prompts.json` (35 prompts); the final project is
-  `docs/content/final-project.md`; the screen-recording scripts are in `docs/content/video-scripts/`.
+- **Content:** written in Markdown. `docs/kurs-f4134b/content/course.json` lists the 6 modules and 37 lessons; the lessons are in
+  `docs/kurs-f4134b/content/lessons/*.md`. The prompt library is `docs/kurs-f4134b/content/prompts.json` (35 prompts); the final project is
+  `docs/kurs-f4134b/content/final-project.md`; the screen-recording scripts are in `docs/kurs-f4134b/content/video-scripts/`.
 - **Lesson extensions:** a ```` ```prompt ```` block becomes a card with a Copy button, a ```` ```quiz ```` block becomes an
   interactive quiz, and `- [ ]` checklists are saved per device.
 - **Publish:** GitHub → Settings → Pages → *Deploy from a branch* → choose the branch and the `/docs` folder → Save.

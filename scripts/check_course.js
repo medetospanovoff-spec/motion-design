@@ -1,13 +1,14 @@
 // QA for the course site (docs/): opens every page at phone size and checks content + layout.
 //   python3 -m http.server 8765 --directory docs &   then   node scripts/check_course.js [--shots]
+// The course lives at a private path (docs/kurs-f4134b/); docs/index.html is the public sales page.
 const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
 
-const BASE = process.env.BASE || 'http://localhost:8765/';
+const BASE = process.env.BASE || 'http://localhost:8765/kurs-f4134b/';
 const ROOT = path.resolve(__dirname, '..');
 const SHOTS = path.join(ROOT, 'build', 'course-shots');
-const course = JSON.parse(fs.readFileSync(path.join(ROOT, 'docs/content/course.json'), 'utf8'));
+const course = JSON.parse(fs.readFileSync(path.join(ROOT, 'docs/kurs-f4134b/content/course.json'), 'utf8'));
 const SECTIONS = ['Сабақ мақсаты', 'Түсіндірме', 'Қадамдар', 'Практикалық тапсырма', 'Күтілетін нәтиже', 'Жиі қателер', 'Тексеру сұрақтары'];
 
 (async () => {
