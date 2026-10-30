@@ -190,7 +190,7 @@
     view.innerHTML = `
       <section class="hero">
         <div>
-          <div class="eyebrow">Тегін практикалық курс · қазақ тілінде</div>
+          <div class="eyebrow">Авторлық курс</div>
           <h1>Тек <em>смартфонмен</em> алғашқы AI-видеоңызды жасаңыз</h1>
           <p class="muted" style="margin-top:14px">Монтаж, бағдарламалау және дизайн тәжірибесі қажет емес. ChatGPT, GitHub және Claude Code көмегімен TikTok, Instagram Reels және YouTube Shorts үшін кәсіби вертикал видео жасауды үйренесіз.</p>
           <div class="badges" style="margin:16px 0 18px">
