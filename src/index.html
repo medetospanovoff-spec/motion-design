@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<title>AI Reels KZ</title>
+<style>
+  @font-face { font-family: Head; font-weight: 900; src: url(../assets/fonts/FiraSansExtraCondensed-Black.ttf); }
+  @font-face { font-family: Head; font-weight: 800; src: url(../assets/fonts/FiraSansExtraCondensed-ExtraBold.ttf); }
+  @font-face { font-family: Mono; font-weight: 400; src: url(../assets/fonts/JetBrainsMono-Regular.ttf); }
+  @font-face { font-family: Mono; font-weight: 700; src: url(../assets/fonts/JetBrainsMono-Bold.ttf); }
+  @font-face { font-family: Serif; font-style: italic; font-weight: 400; src: url(../assets/fonts/PTSerif-Italic.ttf); }
+  @font-face { font-family: Sans; font-weight: 600; src: url(../assets/fonts/Inter-SemiBold.otf); }
+  @font-face { font-family: Sans; font-weight: 700; src: url(../assets/fonts/Inter-Bold.otf); }
+  @font-face { font-family: Sans; font-weight: 900; src: url(../assets/fonts/Inter-Black.otf); }
+
+  html, body { margin: 0; padding: 0; background: #000; }
+  #stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #0C1222; }
+  .layer { position: absolute; inset: 0; overflow: hidden; }
+  .scene { position: absolute; inset: 0; overflow: hidden; display: none; }
+  .cam { position: absolute; inset: 0; transform-origin: 50% 50%; }
+  .a { position: absolute; left: 0; top: 0; white-space: nowrap; line-height: 0.86; will-change: transform; }
+  .head { font-family: Head; font-weight: 900; text-transform: none; letter-spacing: -0.005em; }
+  .mono { font-family: Mono; font-weight: 700; letter-spacing: 0.32em; }
+  .serif { font-family: Serif; font-style: italic; }
+  .sans { font-family: Sans; }
+  .ch { display: inline-block; white-space: pre; }
+  .clip { overflow: hidden; }
+  canvas { position: absolute; left: 0; top: 0; }
+  #grain { mix-blend-mode: overlay; opacity: 0.09; pointer-events: none; }
+  #vignette { background: radial-gradient(ellipse at 50% 45%, transparent 55%, rgba(0,0,0,0.28) 100%); }
+  .cap-box { position: absolute; left: 540px; top: 1410px; transform: translate(-50%, -50%);
+    padding: 22px 30px 24px; border-radius: 26px; background: rgba(10,14,28,0.92);
+    box-shadow: 0 18px 50px rgba(0,0,0,0.35); white-space: nowrap; font-family: Sans; font-weight: 900;
+    font-size: 58px; color: #F4F6FA; letter-spacing: -0.01em; line-height: 1; }
+  .cap-w { display: inline-block; margin: 0 9px; padding: 6px 12px 9px; border-radius: 12px; }
+  .win { position: absolute; left: 0; top: 0; border-radius: 22px; overflow: hidden; background: #F7F9FC;
+    box-shadow: 0 30px 70px rgba(12,18,34,0.28), 0 2px 0 rgba(255,255,255,0.6) inset; }
+  .win-bar { height: 54px; background: #E6EBF2; display: flex; align-items: center; padding: 0 22px; gap: 12px;
+    font-family: Mono; font-weight: 700; font-size: 20px; letter-spacing: 0.25em; color: #59627A; }
+  .dot { width: 16px; height: 16px; border-radius: 50%; display: inline-block; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="scenes" class="layer"></div>
+  <div id="fx" class="layer"></div>
+  <div id="captions" class="layer"></div>
+  <div id="vignette" class="layer"></div>
+  <canvas id="grain" width="540" height="960" style="width:1080px;height:1920px"></canvas>
+  <div id="hud" class="layer"></div>
+  <div id="flash" class="layer" style="background:#fff;opacity:0"></div>
+</div>
+<script src="lib.js"></script>
+<script src="scenes.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
